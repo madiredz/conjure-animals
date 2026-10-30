@@ -15,8 +15,8 @@ h1{font-size:1.9rem;margin:0 0 6px;letter-spacing:-.01em}
 section{margin-bottom:40px}
 h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin:0 0 14px;font-weight:600}
 h2 span{color:var(--ac);margin-right:8px}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-.opt{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:14px 16px;text-align:left;font:inherit;cursor:pointer;transition:.15s}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.opt{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:14px 16px;text-align:left;font:inherit;line-height:1.2;cursor:pointer;transition:.15s}
 .opt:hover{border-color:#41495a;background:var(--card2)}
 .opt.on{border-color:var(--ac);background:var(--ac2)}
 .opt b{display:block;font-size:1rem}
@@ -41,8 +41,8 @@ h2 span{color:var(--ac);margin-right:8px}
 .item b{color:var(--tx)}
 .item p{margin:2px 0 0;color:#c3c9d6}
 .dp{display:inline-flex;flex-wrap:wrap;gap:8px;margin:8px 10px 0 0}
-.dmg{display:inline-flex;flex-direction:column;background:#2b1f22;border:1px solid #5a2f35;color:#ffb3b3;border-radius:10px;padding:6px 14px;font-weight:700;font-size:1.1rem;line-height:1.25}
-.dmg small{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#d99;font-weight:600}
+.dmg{display:inline-flex;flex-direction:column;background:#1b2735;border:1px solid #324a63;color:#c4dcf5;border-radius:10px;padding:6px 14px;font-weight:700;font-size:1.1rem;line-height:1.25}
+.dmg small{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#8fb0d4;font-weight:600}
 .dmg.roll{background:var(--card2);border-color:var(--line);color:var(--tx)}
 .dmg.roll small{color:var(--mu)}
 .meta{color:var(--mu);font-size:.9rem}
@@ -52,10 +52,13 @@ h2 span{color:var(--ac);margin-right:8px}
 .trk{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .t{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px}
 .t.dead{opacity:.55}
-.t .lb{display:flex;justify-content:space-between;color:var(--mu);font-size:.85rem;margin-bottom:8px}
+.t .lb{display:flex;justify-content:space-between;color:var(--mu);font-size:.85rem;margin-bottom:0}
 .t .row{display:flex;align-items:center;gap:14px}
 .t .num{font-size:2.4rem;font-weight:700;line-height:1;min-width:2ch}
 .t .num small{font-size:.95rem;color:var(--mu);font-weight:400}
+.num input{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;width:3.6ch;padding:2px 4px;text-align:center}
+.num input:focus{outline:none;border-color:var(--ac)}
+.nw{white-space:nowrap}
 .arr{display:flex;flex-direction:column;gap:6px;margin-left:auto}
 .arr button{width:44px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-size:.9rem}
 .arr button:hover{border-color:var(--ac);color:var(--ac)}
@@ -144,11 +147,11 @@ const $=id=>document.getElementById(id);
 const plural=(n,w)=>n+" "+w+(n===1?"":"s");
 
 function renderCR(){
-  $("crs").innerHTML=["1/4","1/2","1","2"].map(k=>`<button class="opt ${k===cr?"on":""}" data-cr="${k}"><b>CR ${k}</b><small>${plural(BASE[k],"beast")} · ${D[k].length} options</small></button>`).join("");
+  $("crs").innerHTML=["1/4","1/2","1","2"].map(k=>`<button class="opt ${k===cr?"on":""}" data-cr="${k}"><b>CR ${k}</b><small><span class="nw">${plural(BASE[k],"beast")}</span> · <span class="nw">${D[k].length} options</span></small></button>`).join("");
 }
 function renderList(){
   $("s2").hidden=!cr;if(!cr)return;
-  $("list").innerHTML=D[cr].map((a,i)=>`<button class="opt ${cur===a?"on":""}" data-i="${i}"><b>${a[0]}</b><small>AC ${a[1]} · HP ${a[2]}</small></button>`).join("");
+  $("list").innerHTML=D[cr].map((a,i)=>`<button class="opt ${cur===a?"on":""}" data-i="${i}"><b>${a[0]}</b><small><span class="nw">AC ${a[1]}</span> · <span class="nw">HP ${a[2]}</span></small></button>`).join("");
 }
 function dmgHtml(s){
   return s.split(" + ").map(p=>p.replace(/^(\d+) \(([^)]+)\)(.*)$/,(m,n,d,r)=>`<span class="dp"><span class="dmg"><small>Average</small>${n}</span><span class="dmg roll"><small>Roll</small>${d}${r}</span></span>`)).join(" ");
@@ -184,8 +187,8 @@ function paint(i){
   const v=arr()[i],mx=cur[2],p=v/mx;
   const col=p>.5?"var(--ac)":p>.25?"var(--amb)":"var(--red)";
   const el=$("t"+i);el.className="t"+(v===0?" dead":"");
-  el.innerHTML=`<div class="lb"><span>Beast ${i+1}</span><span>${v===0?"Down":""}</span></div>
-  <div class="row"><div class="num">${v}<small> / ${mx}</small></div>
+  el.innerHTML=`<div class="lb"><span>${cur[0].trim().split(" ").pop()} ${i+1}</span><span>${v===0?"Down":""}</span></div>
+  <div class="row"><div class="num"><input class="hpin" type="text" inputmode="numeric" data-i="${i}" value="${v}" aria-label="Hit points of beast ${i+1}"><small> / ${mx}</small></div>
   <div class="arr"><button data-i="${i}" data-d="1" aria-label="Increase HP of beast ${i+1}">▲</button><button data-i="${i}" data-d="-1" aria-label="Decrease HP of beast ${i+1}">▼</button></div></div>
   <div class="bar"><i style="width:${p*100}%;background:${col}"></i></div>`;
 }
@@ -197,6 +200,9 @@ document.addEventListener("click",e=>{
   else if(b.id==="reset"){hp[cur[0]]=[];renderTrk();}
   else if(b.dataset.d){const a=arr(),i=+b.dataset.i;a[i]=Math.max(0,Math.min(cur[2],a[i]+ +b.dataset.d));paint(i);}
 });
+document.addEventListener("change",e=>{const t=e.target;if(!t.classList.contains("hpin"))return;const a=arr(),i=+t.dataset.i;let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,Math.min(cur[2],n));paint(i);});
+document.addEventListener("focusin",e=>{if(e.target.classList&&e.target.classList.contains("hpin"))e.target.select();});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("hpin"))e.target.blur();});
 renderCR();
 </script>
 </body>
