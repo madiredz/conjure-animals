@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conjure Animals Tracker</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1015;--card:#171a21;--card2:#1e222b;--line:#2a2f3b;--tx:#e8eaf0;--mu:#98a1b3;--ac:#7fd6b0;--ac2:#163a2e;--red:#ef6a6a;--amb:#e9b949;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+main{max-width:1000px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:1.9rem;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mu);margin:0 0 40px}
+section{margin-bottom:40px}
+h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);margin:0 0 14px;font-weight:600}
+h2 span{color:var(--ac);margin-right:8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.opt{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:14px 16px;text-align:left;font:inherit;cursor:pointer;transition:.15s}
+.opt:hover{border-color:#41495a;background:var(--card2)}
+.opt.on{border-color:var(--ac);background:var(--ac2)}
+.opt b{display:block;font-size:1rem}
+.opt small{color:var(--mu)}
+.opt.on small{color:#b5e8d2}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{background:var(--card);border:1px solid var(--line);color:var(--mu);padding:8px 14px;border-radius:999px;font:inherit;font-size:.9rem;cursor:pointer}
+.seg button.on{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.head h3{font-size:1.6rem;margin:0}
+.tag{color:var(--mu);font-size:.9rem}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:var(--card2);border-radius:10px;padding:8px 16px;text-align:center;min-width:76px}
+.stat small{display:block;color:var(--mu);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
+.stat b{font-size:1.3rem}
+.desc{color:#c3c9d6;margin:18px 0 0}
+.blk{margin-top:26px}
+.blk h4{margin:0 0 10px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ac)}
+.item{padding:12px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.item b{color:var(--tx)}
+.item p{margin:2px 0 0;color:#c3c9d6}
+.dp{display:inline-flex;flex-wrap:wrap;gap:8px;margin:8px 10px 0 0}
+.dmg{display:inline-flex;flex-direction:column;background:#2b1f22;border:1px solid #5a2f35;color:#ffb3b3;border-radius:10px;padding:6px 14px;font-weight:700;font-size:1.1rem;line-height:1.25}
+.dmg small{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#d99;font-weight:600}
+.dmg.roll{background:var(--card2);border-color:var(--line);color:var(--tx)}
+.dmg.roll small{color:var(--mu)}
+.meta{color:var(--mu);font-size:.9rem}
+.trk-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:16px}
+.btn{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:8px 16px;font:inherit;cursor:pointer}
+.btn:hover{border-color:#41495a}
+.trk{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.t{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px}
+.t.dead{opacity:.55}
+.t .lb{display:flex;justify-content:space-between;color:var(--mu);font-size:.85rem;margin-bottom:8px}
+.t .row{display:flex;align-items:center;gap:14px}
+.t .num{font-size:2.4rem;font-weight:700;line-height:1;min-width:2ch}
+.t .num small{font-size:.95rem;color:var(--mu);font-weight:400}
+.arr{display:flex;flex-direction:column;gap:6px;margin-left:auto}
+.arr button{width:44px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-size:.9rem}
+.arr button:hover{border-color:var(--ac);color:var(--ac)}
+.bar{height:6px;background:#2d3340;border-radius:4px;margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;transition:.2s}
+.empty{color:var(--mu);border:1px dashed var(--line);border-radius:12px;padding:22px}
+@media(max-width:520px){main{padding:28px 14px 60px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Conjure Animals</h1>
+<p class="sub">Pick a challenge rating, choose a beast, and track each summoned creature’s hit points.</p>
+<section><h2><span>1</span>Challenge rating</h2><div class="grid" id="crs"></div></section>
+<section id="s2" hidden><h2><span>2</span>Choose an animal</h2><div class="grid" id="list"></div></section>
+<section id="s3" hidden><h2><span>3</span>Animal details &amp; tracker</h2><div id="detail"></div></section>
+</main>
+<script>
+// [name, AC, HP, size, description, traits "Name: text|...", actions "Name;hit;reach;damage;extra|..."]
+const D={
+"1/4":[
+["Axe Beak",11,19,"Large","A tall, flightless bird with strong legs and a heavy, wedge-shaped beak. It has a nasty disposition and attacks unfamiliar creatures that wander too close.","","Beak;+4;;6 (1d8+2) slashing"],
+["Boar",11,11,"Medium","","Charge: If the boar moves 20+ ft. straight toward a target and hits with a tusk attack on the same turn, the target takes an extra 3 (1d6) slashing damage and, if a creature, must succeed on a DC 11 STR save or be knocked prone.|Relentless (Recharges after a Short or Long Rest): If the boar takes 7 damage or less that would reduce it to 0 HP, it is reduced to 1 HP instead.","Tusk;+3;;4 (1d6+1) slashing"],
+["Constrictor Snake",12,13,"Large","","","Bite;+4;;5 (1d6+2) piercing|Constrict;+4;;6 (1d8+2) bludgeoning;The target is grappled (escape DC 14) and restrained until the grapple ends. The snake can’t constrict another target."],
+["Cow",10,15,"Large","Variation: an Ox counts as a Huge animal for carrying capacity.","Charge: If the cow moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 7 (2d6) damage.","Gore;+6;;7 (1d6+4) piercing"],
+["Dimetrodon",12,19,"Medium","A sailed-back reptile found where dinosaurs live. It hunts on shores and in shallow water, like a crocodile. Swim 20 ft.","","Bite;+4;;9 (2d6+2) piercing"],
+["Draft Horse",10,19,"Large","","","Hooves;+6;;9 (2d4+4) bludgeoning"],
+["Elk",10,13,"Large","","Charge: If the elk moves 20+ ft. straight toward a target and hits with a ram attack on the same turn, the target takes an extra 7 (2d6) damage and, if a creature, must succeed on a DC 13 STR save or be knocked prone.","Ram;+5;;6 (1d6+3) bludgeoning|Hooves;+5;;8 (2d4+3) bludgeoning;Only against a prone creature."],
+["Giant Badger",10,13,"Medium","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.","Multiattack;;;;Two attacks: one bite and one claws.|Bite;+3;;4 (1d6+1) piercing|Claws;+3;;6 (2d4+1) slashing"],
+["Giant Bat",13,22,"Large","","Echolocation: Can’t use blindsight while deafened.|Keen Hearing: Advantage on Wisdom (Perception) checks that rely on hearing.","Bite;+4;;5 (1d6+2) piercing"],
+["Giant Centipede",13,4,"Small","","","Bite;+4;;4 (1d4+2) piercing;Target must succeed on a DC 11 CON save or take 10 (3d6) poison damage. If this reduces it to 0 HP, it is stable but poisoned for 1 hour and paralyzed while poisoned this way."],
+["Giant Frog",11,18,"Medium","","Amphibious: Can breathe air and water.|Standing Leap: Long jump up to 20 ft., high jump up to 10 ft., with or without a running start.","Bite;+3;;4 (1d6+1) piercing;Target is grappled (escape DC 11) and restrained; the frog can’t bite another target.|Swallow;;;5 (2d4) acid;Bite attack against a Small or smaller target it is grappling. On a hit the target is swallowed, blinded and restrained, has total cover from outside, and takes the acid damage at the start of each of the frog’s turns. One swallowed target at a time. If the frog dies, the target escapes using 5 ft. of movement, prone."],
+["Giant Lizard",12,19,"Large","Can be ridden or used as a draft animal. Lizardfolk keep them as pets; Drow and Duergar use subterranean ones as mounts.","Variant: Hold Breath: Can hold its breath for 15 minutes (a lizard with this trait also has swim 30 ft.).|Variant: Spider Climb: Can climb difficult surfaces, including upside down on ceilings, without an ability check.","Bite;+4;;6 (1d8+2) piercing"],
+["Giant Owl",12,19,"Large","Often befriends fey and other sylvan creatures and guards their woodland realms.","Flyby: Doesn’t provoke opportunity attacks when it flies out of an enemy’s reach.|Keen Hearing and Sight: Advantage on Wisdom (Perception) checks that rely on hearing or sight.","Talons;+3;;8 (2d6+1) slashing"],
+["Giant Poisonous Snake",14,11,"Medium","","","Bite;+6;reach 10 ft.;6 (1d4+4) piercing;Target makes a DC 11 CON save, taking 10 (3d6) poison damage on a failure, or half on a success."],
+["Giant Wolf Spider",13,11,"Medium","Smaller than a giant spider, it hunts across open ground or hides in a burrow, crevice, or hidden cavity beneath debris.","Spider Climb: Climbs difficult surfaces, including ceilings, without an ability check.|Web Sense: While touching a web, knows the exact location of any other creature touching it.|Web Walker: Ignores movement restrictions caused by webbing.","Bite;+3;;4 (1d6+1) piercing;DC 11 CON save: 7 (2d6) poison on a failure, half on a success. If this reduces the target to 0 HP, it is stable but poisoned for 1 hour and paralyzed while poisoned this way."],
+["Hadrosaurus",11,19,"Large","A semi-quadrupedal herbivore recognisable by its bony head. If raised as a hatchling, it can be trained to carry a Small or Medium rider.","","Tail;+4;;7 (1d10+2) bludgeoning"],
+["Panther",12,13,"Medium","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pounce: If the panther moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 12 STR save or be knocked prone. If the target is prone, the panther can make one bite attack against it as a bonus action.","Bite;+4;;5 (1d6+2) piercing|Claw;+4;;4 (1d4+2) slashing"],
+["Pteranodon",13,13,"Medium","","Flyby: Doesn’t provoke opportunity attacks when it flies out of an enemy’s reach.","Bite;+3;;6 (2d4+1) piercing"],
+["Riding Horse",10,13,"Large","","","Hooves;+5;;8 (2d4+3) bludgeoning"],
+["Rothe",10,13,"Large","Resembles a musk ox; darkvision 30 ft. Variant: Deep Rothe are stunted Underdark versions (Medium, darkvision 60 ft.) that can innately cast dancing lights at will (Charisma).","Charge: If the rothe moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 7 (2d6) piercing damage.","Gore;+6;;7 (1d6+4) piercing"],
+["Stench Kow",10,15,"Large","Orange and green misshapen bison native to the Lower Planes. Resistant to cold, fire and poison; darkvision 60 ft.","Stench: Any creature other than a stench kow that starts its turn within 5 ft. must succeed on a DC 12 CON save or be poisoned until the start of its next turn. On a success, it is immune to all stench kows’ stench for 1 hour.|Charge: Extra 7 (2d6) piercing damage if it moves 20+ ft. straight toward a target and gores it on the same turn.","Gore;+6;;7 (1d6+4) piercing"],
+["Wolf",13,11,"Medium","","Keen Hearing and Smell: Advantage on Wisdom (Perception) checks that rely on hearing or smell.|Pack Tactics: Advantage on an attack roll against a creature if at least one of the wolf’s allies is within 5 ft. of it and isn’t incapacitated.","Bite;+4;;7 (2d4+2) piercing;If the target is a creature, it must succeed on a DC 11 STR save or be knocked prone."],
+["Velociraptor",13,10,"Tiny","A feathered dinosaur about the size of a large turkey. An aggressive pack hunter that brings down larger prey.","Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.","Multiattack;;;;Two attacks: one bite and one claws.|Bite;+4;;5 (1d6+2) piercing|Claws;+4;;4 (1d4+2) slashing"]
+],
+"1/2":[
+["Ape",12,19,"Medium","","","Multiattack;;;;Two fist attacks.|Fist;+5;;6 (1d6+3) bludgeoning|Rock;+5;range 25/50 ft.;6 (1d6+3) bludgeoning"],
+["Black Bear",11,19,"Medium","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.","Multiattack;;;;One bite and one claws.|Bite;+3;;5 (1d6+2) piercing|Claws;+3;;7 (2d4+2) slashing"],
+["Crocodile",12,19,"Large","","Hold Breath: Can hold its breath for 15 minutes.","Bite;+4;;7 (1d10+2) piercing;Target is grappled (escape DC 12) and restrained; the crocodile can’t bite another target."],
+["Giant Goat",11,19,"Large","","Charge: If the goat moves 20+ ft. straight toward a target and hits with a ram attack on the same turn, the target takes an extra 5 (2d4) bludgeoning damage and, if a creature, must succeed on a DC 13 STR save or be knocked prone.|Sure-Footed: Advantage on STR and DEX saves against effects that would knock it prone.","Ram;+5;;8 (2d4+3) bludgeoning"],
+["Giant Sea Horse",13,16,"Large","Shy, colourful fish with elongated bodies and curled tails. Aquatic elves train them as mounts. Swim 40 ft.","Charge: If it moves 20+ ft. straight toward a target and hits with a ram attack on the same turn, the target takes an extra 7 (2d6) bludgeoning damage and, if a creature, must succeed on a DC 11 STR save or be knocked prone.|Water Breathing: Can breathe only underwater.","Ram;+3;;4 (1d6+1) bludgeoning"],
+["Giant Wasp",12,13,"Medium","","","Sting;+4;;5 (1d6+2) piercing;DC 11 CON save: 10 (3d6) poison on a failure, half on a success. If this reduces the target to 0 HP, it is stable but poisoned for 1 hour and paralyzed while poisoned this way."],
+["Reef Shark",12,22,"Medium","Inhabits shallow waters and coral reefs, gathering in small packs to hunt. 6 to 10 feet long.","Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.|Water Breathing: Can breathe only underwater.","Bite;+4;;6 (1d8+2) piercing"],
+["Warhorse",11,19,"Large","","Trampling Charge: If the horse moves 20+ ft. straight toward a creature and hits with a hooves attack on the same turn, the target must succeed on a DC 14 STR save or be knocked prone. If the target is prone, the horse can make another hooves attack against it as a bonus action.","Hooves;+6;;11 (2d6+4) bludgeoning"]
+],
+"1":[
+["Brown Bear",11,34,"Large","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.","Multiattack;;;;One bite and one claws.|Bite;+5;;8 (1d8+4) piercing|Claws;+5;;11 (2d6+4) slashing"],
+["Deinonychus",13,26,"Medium","A larger cousin of the velociraptor that kills by gripping its target with its claws and feeding while the creature is still alive.","Pounce: If it moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 12 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.","Multiattack;;;;Three attacks: one bite and two claws.|Bite;+4;;6 (1d8+2) piercing|Claws;+4;;6 (1d8+2) slashing"],
+["Dire Wolf",14,37,"Large","","Keen Hearing and Smell: Advantage on Wisdom (Perception) checks that rely on hearing or smell.|Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.","Bite;+5;;10 (2d6+3) piercing;If the target is a creature, it must succeed on a DC 13 STR save or be knocked prone."],
+["Giant Eagle",13,26,"Large","A noble creature that speaks its own language and understands Common. A mated pair typically has up to four eggs or young in their nest.","Keen Sight: Advantage on Wisdom (Perception) checks that rely on sight.","Multiattack;;;;One beak and one talons.|Beak;+5;;6 (1d6+3) piercing|Talons;+5;;10 (2d6+3) slashing"],
+["Giant Hyena",12,45,"Large","","Rampage: When it reduces a creature to 0 HP with a melee attack on its turn, it can take a bonus action to move up to half its speed and make a bite attack.","Bite;+5;;10 (2d6+3) piercing"],
+["Giant Octopus",11,52,"Large","","Hold Breath: While out of water, can hold its breath for 1 hour.|Underwater Camouflage: Advantage on Dexterity (Stealth) checks while underwater.|Water Breathing: Can breathe only underwater.","Tentacles;+5;reach 15 ft.;10 (2d6+3) bludgeoning;If the target is a creature, it is grappled (escape DC 16) and restrained; the octopus can’t use its tentacles on another target.|Ink Cloud (Recharges after a Short or Long Rest);;;;20-ft.-radius cloud of ink while underwater, heavily obscured for 1 minute (currents can disperse it). Afterwards the octopus can Dash as a bonus action."],
+["Giant Spider",14,26,"Large","Spins elaborate webs or shoots sticky strands from its abdomen. Most often found underground, with lairs festooned with web cocoons.","Spider Climb: Climbs difficult surfaces, including ceilings, without an ability check.|Web Sense: While touching a web, knows the exact location of any other creature touching it.|Web Walker: Ignores movement restrictions caused by webbing.","Bite;+5;;7 (1d8+3) piercing;DC 11 CON save: 9 (2d8) poison on a failure, half on a success. If this reduces the target to 0 HP, it is stable but poisoned for 1 hour and paralyzed while poisoned this way.|Web (Recharge 5–6);+5;range 30/60 ft.;;Target is restrained by webbing. As an action it can make a DC 12 STR check to burst free. The webbing can be destroyed (AC 10, 5 HP, vulnerable to fire; immune to bludgeoning, poison, psychic)."],
+["Giant Toad",11,39,"Large","","Amphibious: Can breathe air and water.|Standing Leap: Long jump up to 20 ft., high jump up to 10 ft., with or without a running start.","Bite;+4;;7 (1d10+2) piercing + 5 (1d10) poison;Target is grappled (escape DC 13) and restrained; the toad can’t bite another target.|Swallow;;;10 (3d6) acid;Bite attack against a Medium or smaller target it is grappling. On a hit the target is swallowed, blinded and restrained, has total cover from outside, and takes the acid damage at the start of each of the toad’s turns. One swallowed target at a time. If the toad dies, the target escapes using 5 ft. of movement, prone."],
+["Giant Vulture",10,22,"Large","Has advanced intelligence and a malevolent bent. Unlike its smaller kin, it will attack a wounded creature to hasten its end.","Keen Sight and Smell: Advantage on Wisdom (Perception) checks that rely on sight or smell.|Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.","Multiattack;;;;One beak and one talons.|Beak;+4;;7 (2d4+2) piercing|Talons;+4;;9 (2d6+2) slashing"],
+["Lion",12,26,"Large","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.|Pounce: If it moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 13 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.|Running Leap: With a 10-ft. running start, it can long jump up to 25 ft.","Bite;+5;;7 (1d8+3) piercing|Claw;+5;;6 (1d6+3) slashing"],
+["Tiger",12,37,"Large","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pounce: If it moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 13 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.","Bite;+5;;8 (1d10+3) piercing|Claw;+5;;7 (1d8+3) slashing"]
+],
+"2":[
+["Allosaurus",13,51,"Large","A predator of great size, strength and speed that runs down almost any prey over open ground.","Pounce: If it moves 30+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 13 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.","Bite;+6;;15 (2d10+4) piercing|Claw;+6;;8 (1d8+4) slashing"],
+["Aurochs",11,38,"Large","","Charge: If it moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 9 (2d8) piercing damage and, if a creature, must succeed on a DC 15 STR save or be knocked prone.","Gore;+7;;14 (2d8+5) piercing"],
+["Giant Boar",12,42,"Large","","Charge: If it moves 20+ ft. straight toward a target and hits with a tusk attack on the same turn, the target takes an extra 7 (2d6) slashing damage and, if a creature, must succeed on a DC 13 STR save or be knocked prone.|Relentless (Recharges after a Short or Long Rest): If it takes 10 damage or less that would reduce it to 0 HP, it is reduced to 1 HP instead.","Tusk;+5;;10 (2d6+3) slashing"],
+["Giant Constrictor Snake",12,60,"Huge","","","Bite;+6;reach 10 ft.;11 (2d6+4) piercing|Constrict;+6;;13 (2d8+4) bludgeoning;Target is grappled (escape DC 16) and restrained until the grapple ends. The snake can’t constrict another target."],
+["Giant Elk",14,42,"Huge","Rare to the point that its appearance is often taken as foreshadowing of an important event. Many cultures believe hunting one invites divine wrath.","Charge: If it moves 20+ ft. straight toward a target and hits with a ram attack on the same turn, the target takes an extra 7 (2d6) damage and, if a creature, must succeed on a DC 14 STR save or be knocked prone.","Ram;+6;reach 10 ft.;11 (2d6+4) bludgeoning|Hooves;+6;;22 (4d8+4) bludgeoning;Only against a prone creature."],
+["Hunter Shark",12,45,"Large","Larger and fiercer than a reef shark; haunts deep waters and usually hunts alone. 15 to 20 feet long.","Blood Frenzy: Advantage on melee attack rolls against any creature that doesn’t have all its HP.|Water Breathing: Can breathe only underwater.","Bite;+6;;13 (2d8+4) piercing"],
+["Plesiosaurus",13,68,"Large","","Hold Breath: Can hold its breath for 1 hour.","Bite;+6;reach 10 ft.;14 (3d6+4) piercing"],
+["Polar Bear / Cave Bear",12,42,"Large","Variant: Cave bears have adapted to life underground. Ill-tempered behemoths with coarse, dark hair and darkvision 60 ft.","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.","Multiattack;;;;One bite and one claws.|Bite;+7;;9 (1d8+5) piercing|Claws;+7;;12 (2d6+5) slashing"],
+["Quetzalcoatlus",13,30,"Huge","A giant relative of the pteranodon with a wingspan over 30 feet. It can move on the ground like a quadruped but is more comfortable in the air.","Dive Attack: If flying and it dives 30+ ft. toward a target and then hits with a bite attack, the attack deals an extra 10 (3d6) damage.|Flyby: Doesn’t provoke opportunity attacks when it flies out of an enemy’s reach.","Bite;+4;reach 10 ft.;12 (3d6+2) piercing"],
+["Rhinoceros",11,45,"Large","","Charge: If it moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 9 (2d8) bludgeoning damage and, if a creature, must succeed on a DC 15 STR save or be knocked prone.","Gore;+7;;14 (2d8+5) bludgeoning"],
+["Saber-toothed Tiger",12,52,"Large","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pounce: If it moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 14 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.","Bite;+6;;10 (1d10+5) piercing|Claw;+6;;12 (2d6+5) slashing"]
+]};
+const BASE={"1/4":8,"1/2":4,"1":2,"2":1};
+const SLOTS=[["3rd",1],["5th",2],["7th",3],["9th",4]];
+let cr=null,cur=null,mult=1;const hp={};
+const $=id=>document.getElementById(id);
+const plural=(n,w)=>n+" "+w+(n===1?"":"s");
+
+function renderCR(){
+  $("crs").innerHTML=["1/4","1/2","1","2"].map(k=>`<button class="opt ${k===cr?"on":""}" data-cr="${k}"><b>CR ${k}</b><small>${plural(BASE[k],"beast")} · ${D[k].length} options</small></button>`).join("");
+}
+function renderList(){
+  $("s2").hidden=!cr;if(!cr)return;
+  $("list").innerHTML=D[cr].map((a,i)=>`<button class="opt ${cur===a?"on":""}" data-i="${i}"><b>${a[0]}</b><small>AC ${a[1]} · HP ${a[2]}</small></button>`).join("");
+}
+function dmgHtml(s){
+  return s.split(" + ").map(p=>p.replace(/^(\d+) \(([^)]+)\)(.*)$/,(m,n,d,r)=>`<span class="dp"><span class="dmg"><small>Average</small>${n}</span><span class="dmg roll"><small>Roll</small>${d}${r}</span></span>`)).join(" ");
+}
+function renderDetail(){
+  $("s3").hidden=!cur;if(!cur)return;
+  const [n,ac,mx,sz,desc,tr,ac_]=cur;
+  const traits=tr?tr.split("|").map(t=>{const i=t.indexOf(":");return `<div class="item"><b>${t.slice(0,i)}.</b><p>${t.slice(i+1).trim()}</p></div>`}).join(""):"";
+  const acts=ac_.split("|").map(a=>{
+    const [nm,hit,reach,dmg,ex]=a.split(";");
+    let line="";
+    if(hit){const rg=/range/.test(reach||"");line=`<div class="meta">${rg?"Ranged":"Melee"} attack · ${hit} to hit · ${reach||"reach 5 ft."} · one target</div>`}
+    return `<div class="item"><b>${nm}</b>${line}${dmg?`<div>${dmgHtml(dmg)}</div>`:""}${ex?`<p>${ex}</p>`:""}</div>`}).join("");
+  const cnt=BASE[cr]*mult;
+  $("detail").innerHTML=`<div class="card">
+   <div class="head"><div><h3>${n}</h3><div class="tag">${sz} beast · fey while summoned · CR ${cr}</div></div>
+   <div class="stats"><div class="stat"><small>AC</small><b>${ac}</b></div><div class="stat"><small>Max HP</small><b>${mx}</b></div></div></div>
+   ${desc?`<p class="desc">${desc}</p>`:""}
+   ${traits?`<div class="blk"><h4>Traits</h4>${traits}</div>`:""}
+   <div class="blk"><h4>Actions</h4>${acts}</div>
+   <div class="blk"><div class="trk-top"><h4 style="margin:0">Hit point trackers · ${plural(cnt,"beast")}</h4><button class="btn" id="reset">Reset all to ${mx}</button></div>
+   <div class="seg" style="margin-bottom:18px" id="slots">${SLOTS.map(([l,m])=>`<button data-m="${m}" class="${m===mult?"on":""}">${l}-level slot · ×${m}</button>`).join("")}</div>
+   <div class="trk" id="trk"></div></div></div>`;
+  renderTrk();
+}
+function arr(){const mx=cur[2],c=BASE[cr]*mult,k=cur[0];const a=hp[k]=hp[k]||[];while(a.length<c)a.push(mx);return a}
+function renderTrk(){
+  const a=arr(),mx=cur[2],c=BASE[cr]*mult;
+  $("trk").innerHTML=Array.from({length:c},(_,i)=>`<div class="t" id="t${i}"></div>`).join("");
+  for(let i=0;i<c;i++)paint(i);
+}
+function paint(i){
+  const v=arr()[i],mx=cur[2],p=v/mx;
+  const col=p>.5?"var(--ac)":p>.25?"var(--amb)":"var(--red)";
+  const el=$("t"+i);el.className="t"+(v===0?" dead":"");
+  el.innerHTML=`<div class="lb"><span>Beast ${i+1}</span><span>${v===0?"Down":""}</span></div>
+  <div class="row"><div class="num">${v}<small> / ${mx}</small></div>
+  <div class="arr"><button data-i="${i}" data-d="1" aria-label="Increase HP of beast ${i+1}">▲</button><button data-i="${i}" data-d="-1" aria-label="Decrease HP of beast ${i+1}">▼</button></div></div>
+  <div class="bar"><i style="width:${p*100}%;background:${col}"></i></div>`;
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.cr){cr=b.dataset.cr;cur=null;renderCR();renderList();renderDetail();}
+  else if(b.closest("#list")){cur=D[cr][+b.dataset.i];renderList();renderDetail();$("s3").scrollIntoView({behavior:"smooth",block:"start"});}
+  else if(b.closest("#slots")){mult=+b.dataset.m;renderDetail();}
+  else if(b.id==="reset"){hp[cur[0]]=[];renderTrk();}
+  else if(b.dataset.d){const a=arr(),i=+b.dataset.i;a[i]=Math.max(0,Math.min(cur[2],a[i]+ +b.dataset.d));paint(i);}
+});
+renderCR();
+</script>
+</body>
+</html>
