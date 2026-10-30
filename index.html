@@ -25,47 +25,101 @@ h2 span{color:var(--ac);margin-right:8px}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg button{background:var(--card);border:1px solid var(--line);color:var(--mu);padding:8px 14px;border-radius:999px;font:inherit;font-size:.9rem;cursor:pointer}
 .seg button.on{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
-.head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
 .head h3{font-size:1.6rem;margin:0}
 .tag{color:var(--mu);font-size:.9rem}
-.stats{display:flex;gap:10px;flex-wrap:wrap}
-.stat{background:var(--card2);border-radius:10px;padding:8px 16px;text-align:center;min-width:76px}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stat{background:var(--card2);border-radius:10px;padding:6px 14px;text-align:center;min-width:72px}
 .stat small{display:block;color:var(--mu);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
 .stat b{font-size:1.3rem}
-.desc{color:#c3c9d6;margin:18px 0 0}
-.blk{margin-top:26px}
-.blk h4{margin:0 0 10px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ac)}
-.item{padding:12px 0;border-top:1px solid var(--line)}
-.item:first-of-type{border-top:0}
+.stat .mod{display:block;color:var(--mu);font-size:.85rem}
+.stat.sp{max-width:230px}
+.stat.sp b{font-size:1rem}
+.abil{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:560px){.abil{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:340px){.abil{grid-template-columns:repeat(2,1fr)}}
+.senses{margin:12px 0 0;color:#c3c9d6}
+.senses b{color:var(--tx)}
+.senses+.senses{margin-top:4px}
+.dmg b{font-size:1.3rem}
+.desc{color:#c3c9d6;margin:12px 0 0}
+.blk{margin-top:32px}
+.blk h4{display:flex;align-items:center;gap:12px;margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ac)}
+.blk h4::after{content:"";flex:1;height:1px;background:var(--line)}
+.blk>summary{list-style:none;cursor:pointer;margin-bottom:8px;transition:margin-bottom .26s ease}
+.blk>summary::-webkit-details-marker{display:none}
+.blk>summary h4{margin:0;gap:10px}
+.blk>summary h4::before{content:"";display:inline-block;transition:transform .26s;font-size:.9rem;order:2;width:8px;height:8px;border-top:2px solid;border-right:2px solid;transform:rotate(-45deg)}
+.blk.shut>summary{margin-bottom:0}
+.blk.shut>summary h4::before{transform:rotate(-225deg)}
+.blk>summary:hover h4{filter:brightness(1.25)}
+.bd-in{padding-top:10px}
+.ctl{display:flex;flex-wrap:nowrap;gap:10px 28px;align-items:center;justify-content:space-between;margin-bottom:14px}
+@media(max-width:560px){.ctl{flex-wrap: wrap}}
+.btn.rst{margin-left:auto;background:#1b2735;border-color:#3f78b8;color:#e6f1ff;white-space:nowrap;}
+.btn.rst:hover{border-color:#6aa3e0;background:#1f4a7a}
+@media(max-width:560px){.btn.rst{width:100%; margin-top:20px;}}
+.item{padding:6px 0}
+.item:first-of-type{padding-top:0}
+.item:last-child{padding-bottom:0}
 .item b{color:var(--tx)}
 .item p{margin:2px 0 0;color:#c3c9d6}
-.dp{display:inline-flex;flex-wrap:wrap;gap:8px;margin:8px 10px 0 0}
-.dmg{display:inline-flex;flex-direction:column;background:#1b2735;border:1px solid #324a63;color:#c4dcf5;border-radius:10px;padding:6px 14px;font-weight:700;font-size:1.1rem;line-height:1.25}
-.dmg small{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#8fb0d4;font-weight:600}
-.dmg.roll{background:var(--card2);border-color:var(--line);color:var(--tx)}
+.dp{display:inline-flex;flex-wrap:wrap;gap:8px;margin:10px 10px 8px 0}
+.dmg{display:block;background:#1b2735;color:#c4dcf5;border-radius:10px;padding:6px 14px;min-width:68px;text-align:center}
+.dmg small{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#8fb0d4;font-weight:400}
+.dmg.roll{background:var(--card2);color:var(--tx)}
+.dmg .dt{font-size:.85rem;font-weight:400;color:var(--mu);margin-left:6px}
 .dmg.roll small{color:var(--mu)}
 .meta{color:var(--mu);font-size:.9rem}
 .trk-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:16px}
+.trk-top h4{margin:0;flex:1}
 .btn{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:8px 16px;font:inherit;cursor:pointer}
 .btn:hover{border-color:#41495a}
 .trk{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
-.t{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px}
+.t{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .t.dead{opacity:.55}
 .t .lb{display:flex;justify-content:space-between;color:var(--mu);font-size:.85rem;margin-bottom:0}
 .t .row{display:flex;align-items:center;gap:14px}
 .t .num{font-size:2.4rem;font-weight:700;line-height:1;min-width:2ch}
 .t .num small{font-size:.95rem;color:var(--mu);font-weight:400}
-.num input{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;width:3.6ch;padding:2px 4px;text-align:center}
+.num input{font:inherit;color:inherit;background:var(--card2);border:1px solid var(--line);border-radius:8px;width:3.6ch;padding:2px 4px;text-align:center}
 .num input:focus{outline:none;border-color:var(--ac)}
 .nw{white-space:nowrap}
-.arr{display:flex;flex-direction:column;gap:6px;margin-left:auto}
-.arr button{width:44px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-size:.9rem}
-.arr button:hover{border-color:var(--ac);color:var(--ac)}
-.bar{height:6px;background:#2d3340;border-radius:4px;margin-top:14px;overflow:hidden}
+.arr{display:flex;flex-direction:column;gap:0;margin-left:auto}
+.arr button{width:44px;height:32px;border-radius:0;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-size:.9rem}
+.arr button:first-child{border-radius:8px 8px 0 0}
+.arr button:last-child{border-radius:0 0 8px 8px;margin-top:-1px}
+.arr button:hover{border-color:var(--ac);color:var(--ac);position:relative;z-index:1}
+.bar{display:flex;height:6px;background:#2d3340;border-radius:4px;margin-top:14px;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:4px;transition:.2s}
 .empty{color:var(--mu);border:1px dashed var(--line);border-radius:12px;padding:22px}
-@media(max-width:520px){main{padding:28px 14px 60px}.card{padding:20px}}
+@media(max-width:520px){main{padding:28px 14px 60px}.card{padding:16px}}
+
+:root{--tp:#a78bfa}
+.t .lb{align-items:center}
+.bar.st i{border-radius:0}
+.bar i.tpb{background:var(--tp)}
+.topt{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
+.chk{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:.95rem}
+.chk input{width:18px;height:18px;accent-color:var(--tp)}
+.tapply{display:inline-flex;align-items:center;gap:8px;color:var(--mu);font-size:.9rem}
+.tapply[hidden]{display:none}
+.tin{font:inherit;font-size:.85rem;color:#e3d9ff;background:var(--card2);border:1px solid #4a3d7a;border-radius:6px;width:4ch;height:24px;padding:0 4px;text-align:center}
+.tin:focus{outline:none;border-color:var(--tp)}
+#tall{font-size:1rem;height:32px;width:5ch}
+.trow{display:flex;align-items:center;gap:10px;margin-top:6px;padding:0 0 0 5px;background:#171428;border:1px solid #3a3160;border-radius:8px;overflow:hidden;align-items:stretch}
+.tl{color:var(--tp);font-size:.85rem;align-self:center}
+.trow .tin{font-size:1.05rem;height:28px;width:3ch;margin:4px 0;align-self:center;background:#171428}
+.tar{display:flex;flex-direction:column;width:42px;margin-left:auto;align-self:stretch}
+.tri{display:block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent}
+.tri.u{border-bottom:5px solid currentColor}
+.tri.d{border-top:5px solid currentColor}
+.tar button{flex:1;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-left:1px solid #3a3160;border-radius:0;background:#1d1a2e;color:#e3d9ff;font-size:.5rem;line-height:1;cursor:pointer}
+.tar button+button{border-top:1px solid #3a3160}
+.tar button:hover{background:#2a2447;color:var(--tp)}
+.tmp{display:inline-flex;align-items:center;gap:6px;color:var(--tp)}
+.btn.sm{padding:5px 14px;font-size:.9rem;background:#1d1a2e;border-color:#4a3d7a;color:#e3d9ff}
 </style>
 </head>
 <body>
@@ -99,8 +153,8 @@ const D={
 ["Panther",12,13,"Medium","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pounce: If the panther moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 12 STR save or be knocked prone. If the target is prone, the panther can make one bite attack against it as a bonus action.","Bite;+4;;5 (1d6+2) piercing|Claw;+4;;4 (1d4+2) slashing"],
 ["Pteranodon",13,13,"Medium","","Flyby: Doesn’t provoke opportunity attacks when it flies out of an enemy’s reach.","Bite;+3;;6 (2d4+1) piercing"],
 ["Riding Horse",10,13,"Large","","","Hooves;+5;;8 (2d4+3) bludgeoning"],
-["Rothe",10,13,"Large","Resembles a musk ox; darkvision 30 ft. Variant: Deep Rothe are stunted Underdark versions (Medium, darkvision 60 ft.) that can innately cast dancing lights at will (Charisma).","Charge: If the rothe moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 7 (2d6) piercing damage.","Gore;+6;;7 (1d6+4) piercing"],
-["Stench Kow",10,15,"Large","Orange and green misshapen bison native to the Lower Planes. Resistant to cold, fire and poison; darkvision 60 ft.","Stench: Any creature other than a stench kow that starts its turn within 5 ft. must succeed on a DC 12 CON save or be poisoned until the start of its next turn. On a success, it is immune to all stench kows’ stench for 1 hour.|Charge: Extra 7 (2d6) piercing damage if it moves 20+ ft. straight toward a target and gores it on the same turn.","Gore;+6;;7 (1d6+4) piercing"],
+["Rothe",10,13,"Large","Resembles a musk ox. Variant: Deep Rothe are stunted Underdark versions (Medium, darkvision 60 ft.) that can innately cast dancing lights at will (Charisma).","Charge: If the rothe moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 7 (2d6) piercing damage.","Gore;+6;;7 (1d6+4) piercing"],
+["Stench Kow",10,15,"Large","Orange and green misshapen bison native to the Lower Planes. Resistant to cold, fire and poison.","Stench: Any creature other than a stench kow that starts its turn within 5 ft. must succeed on a DC 12 CON save or be poisoned until the start of its next turn. On a success, it is immune to all stench kows’ stench for 1 hour.|Charge: Extra 7 (2d6) piercing damage if it moves 20+ ft. straight toward a target and gores it on the same turn.","Gore;+6;;7 (1d6+4) piercing"],
 ["Wolf",13,11,"Medium","","Keen Hearing and Smell: Advantage on Wisdom (Perception) checks that rely on hearing or smell.|Pack Tactics: Advantage on an attack roll against a creature if at least one of the wolf’s allies is within 5 ft. of it and isn’t incapacitated.","Bite;+4;;7 (2d4+2) piercing;If the target is a creature, it must succeed on a DC 11 STR save or be knocked prone."],
 ["Velociraptor",13,10,"Tiny","A feathered dinosaur about the size of a large turkey. An aggressive pack hunter that brings down larger prey.","Pack Tactics: Advantage on an attack roll against a creature if at least one ally is within 5 ft. of it and isn’t incapacitated.","Multiattack;;;;Two attacks: one bite and one claws.|Bite;+4;;5 (1d6+2) piercing|Claws;+4;;4 (1d4+2) slashing"]
 ],
@@ -140,12 +194,57 @@ const D={
 ["Rhinoceros",11,45,"Large","","Charge: If it moves 20+ ft. straight toward a target and hits with a gore attack on the same turn, the target takes an extra 9 (2d8) bludgeoning damage and, if a creature, must succeed on a DC 15 STR save or be knocked prone.","Gore;+7;;14 (2d8+5) bludgeoning"],
 ["Saber-toothed Tiger",12,52,"Large","","Keen Smell: Advantage on Wisdom (Perception) checks that rely on smell.|Pounce: If it moves 20+ ft. straight toward a creature and hits with a claw attack on the same turn, the target must succeed on a DC 14 STR save or be knocked prone. If prone, it can make one bite attack against it as a bonus action.","Bite;+6;;10 (1d10+5) piercing|Claw;+6;;12 (2d6+5) slashing"]
 ]};
+// name: [speed, STR,DEX,CON,INT,WIS,CHA]
+const S={
+"Axe Beak":["50 ft.","14,12,12,2,10,5"],"Boar":["40 ft.","13,11,12,2,9,5"],"Constrictor Snake":["30 ft., swim 30 ft.","15,14,12,1,10,3"],"Cow":["30 ft.","18,10,14,2,10,4"],
+"Dimetrodon":["30 ft., swim 20 ft.","14,10,15,2,10,5"],"Draft Horse":["40 ft.","18,10,12,2,11,7"],"Elk":["50 ft.","16,10,12,2,10,6"],"Giant Badger":["30 ft., burrow 10 ft.","13,10,15,2,12,5"],
+"Giant Bat":["10 ft., fly 60 ft.","15,16,11,2,12,6"],"Giant Centipede":["30 ft., climb 30 ft.","5,14,12,1,7,3"],"Giant Frog":["30 ft., swim 30 ft.","12,13,11,2,10,3"],"Giant Lizard":["30 ft., climb 30 ft.","15,12,13,2,10,5"],
+"Giant Owl":["5 ft., fly 60 ft.","13,15,12,8,13,10"],"Giant Poisonous Snake":["30 ft., swim 30 ft.","10,18,13,2,10,3"],"Giant Wolf Spider":["40 ft., climb 40 ft.","12,16,13,3,12,4"],"Hadrosaurus":["40 ft.","15,10,13,2,10,5"],
+"Panther":["50 ft., climb 40 ft.","14,15,10,3,14,7"],"Pteranodon":["10 ft., fly 60 ft.","12,15,10,2,9,5"],"Riding Horse":["60 ft.","16,10,12,2,11,7"],"Rothe":["30 ft.","18,10,14,2,10,4"],
+"Stench Kow":["30 ft.","18,10,14,2,10,4"],"Wolf":["40 ft.","12,15,12,3,12,6"],"Velociraptor":["30 ft.","6,14,13,4,12,6"],
+"Ape":["30 ft., climb 30 ft.","16,14,14,6,12,7"],"Black Bear":["40 ft., climb 30 ft.","15,10,14,2,12,7"],"Crocodile":["20 ft., swim 30 ft.","15,10,13,2,10,5"],"Giant Goat":["40 ft.","17,11,12,3,12,6"],
+"Giant Sea Horse":["0 ft., swim 40 ft.","12,15,11,2,12,5"],"Giant Wasp":["10 ft., fly 50 ft., swim 50 ft.","10,14,10,1,10,3"],"Reef Shark":["swim 40 ft.","14,13,13,1,10,4"],"Warhorse":["60 ft.","18,12,13,2,12,7"],
+"Brown Bear":["40 ft., climb 30 ft.","19,10,16,2,13,7"],"Deinonychus":["40 ft.","15,15,14,4,12,6"],"Dire Wolf":["50 ft.","17,15,15,3,12,7"],"Giant Eagle":["10 ft., fly 80 ft.","16,17,13,8,14,10"],
+"Giant Hyena":["50 ft.","16,14,14,2,12,7"],"Giant Octopus":["10 ft., swim 60 ft.","17,13,13,4,10,4"],"Giant Spider":["30 ft., climb 30 ft.","14,16,12,2,11,4"],"Giant Toad":["20 ft., swim 40 ft.","15,13,13,2,10,3"],
+"Giant Vulture":["10 ft., fly 60 ft.","15,10,15,6,12,7"],"Lion":["50 ft.","17,15,13,3,12,8"],"Tiger":["40 ft.","17,15,14,3,12,8"],
+"Allosaurus":["60 ft.","19,13,17,2,12,5"],"Aurochs":["50 ft.","20,10,19,2,12,5"],"Giant Boar":["40 ft.","17,10,16,2,7,5"],"Giant Constrictor Snake":["30 ft., swim 30 ft.","19,14,12,1,10,3"],
+"Giant Elk":["60 ft.","19,16,14,7,14,10"],"Hunter Shark":["swim 40 ft.","18,13,15,1,10,4"],"Plesiosaurus":["20 ft., swim 40 ft.","18,15,16,2,12,5"],"Polar Bear / Cave Bear":["40 ft., swim 30 ft.","20,10,16,2,13,7"],
+"Quetzalcoatlus":["10 ft., fly 80 ft.","15,13,13,2,10,5"],"Rhinoceros":["40 ft.","21,8,15,2,12,6"],"Saber-toothed Tiger":["40 ft.","18,14,15,3,12,8"]
+};
+const SN={
+"Axe Beak":"Passive Perception 10","Boar":"Passive Perception 9","Constrictor Snake":"Blindsight 10 ft., passive Perception 10","Cow":"Passive Perception 10",
+"Dimetrodon":"Passive Perception 12","Draft Horse":"Passive Perception 10","Elk":"Passive Perception 10","Giant Badger":"Darkvision 30 ft., passive Perception 11",
+"Giant Bat":"Blindsight 60 ft., passive Perception 11","Giant Centipede":"Blindsight 30 ft., passive Perception 8","Giant Frog":"Darkvision 30 ft., passive Perception 12","Giant Lizard":"Darkvision 30 ft., passive Perception 10",
+"Giant Owl":"Darkvision 120 ft., passive Perception 15","Giant Poisonous Snake":"Blindsight 10 ft., passive Perception 12","Giant Wolf Spider":"Blindsight 10 ft., darkvision 60 ft., passive Perception 13","Hadrosaurus":"Passive Perception 12",
+"Panther":"Passive Perception 14","Pteranodon":"Passive Perception 11","Riding Horse":"Passive Perception 10","Rothe":"Darkvision 30 ft., passive Perception 10",
+"Stench Kow":"Darkvision 60 ft., passive Perception 10","Wolf":"Passive Perception 13","Velociraptor":"Passive Perception 13",
+"Ape":"Passive Perception 13","Black Bear":"Passive Perception 13","Crocodile":"Passive Perception 10","Giant Goat":"Passive Perception 11",
+"Giant Sea Horse":"Passive Perception 11","Giant Wasp":"Passive Perception 10","Reef Shark":"Blindsight 30 ft., passive Perception 12","Warhorse":"Passive Perception 11",
+"Brown Bear":"Passive Perception 13","Deinonychus":"Passive Perception 13","Dire Wolf":"Passive Perception 13","Giant Eagle":"Passive Perception 14",
+"Giant Hyena":"Passive Perception 13","Giant Octopus":"Darkvision 60 ft., passive Perception 14","Giant Spider":"Blindsight 10 ft., darkvision 60 ft., passive Perception 10","Giant Toad":"Darkvision 30 ft., passive Perception 10",
+"Giant Vulture":"Passive Perception 13","Lion":"Passive Perception 13","Tiger":"Darkvision 60 ft., passive Perception 13",
+"Allosaurus":"Passive Perception 15","Aurochs":"Passive Perception 11","Giant Boar":"Passive Perception 8","Giant Constrictor Snake":"Blindsight 10 ft., passive Perception 12",
+"Giant Elk":"Passive Perception 14","Hunter Shark":"Darkvision 30 ft., passive Perception 12","Plesiosaurus":"Passive Perception 13","Polar Bear / Cave Bear":"Passive Perception 13",
+"Quetzalcoatlus":"Passive Perception 12","Rhinoceros":"Passive Perception 11","Saber-toothed Tiger":"Passive Perception 13"
+};
 const BASE={"1/4":8,"1/2":4,"1":2,"2":1};
 const SLOTS=[["3rd",1],["5th",2],["7th",3],["9th",4]];
 let cr=null,cur=null,mult=1;const hp={};
 const $=id=>document.getElementById(id);
 const plural=(n,w)=>n+" "+w+(n===1?"":"s");
 
+const closed=new Set();let tempOn=false,tallV=0;const tmp={};
+function toggleSec(d){
+  const bd=d.querySelector(".bd"),from=bd.offsetHeight,opening=d._cl||!d.open;
+  if(d._a){d._a.onfinish=null;d._a.cancel()}
+  d._cl=!opening;d.classList.toggle("shut",!opening);
+  if(opening)d.open=true;
+  const to=opening?bd.scrollHeight:0,ms=matchMedia("(prefers-reduced-motion:reduce)").matches?0:260;
+  const a=d._a=bd.animate({height:[from+"px",to+"px"],opacity:opening?[0,1]:[1,0],overflow:["hidden","hidden"]},{duration:ms,easing:"ease"});
+  a.onfinish=()=>{if(!opening)d.open=false;d._cl=false;d._a=null};
+}
+document.addEventListener("click",e=>{const s=e.target.closest(".blk>summary");if(s){e.preventDefault();toggleSec(s.parentElement)}});
+document.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.sec){d.open?closed.delete(d.dataset.sec):closed.add(d.dataset.sec)}},true);
 function renderCR(){
   $("crs").innerHTML=["1/4","1/2","1","2"].map(k=>`<button class="opt ${k===cr?"on":""}" data-cr="${k}"><b>CR ${k}</b><small><span class="nw">${plural(BASE[k],"beast")}</span> · <span class="nw">${D[k].length} options</span></small></button>`).join("");
 }
@@ -154,11 +253,17 @@ function renderList(){
   $("list").innerHTML=D[cr].map((a,i)=>`<button class="opt ${cur===a?"on":""}" data-i="${i}"><b>${a[0]}</b><small><span class="nw">AC ${a[1]}</span> · <span class="nw">HP ${a[2]}</span></small></button>`).join("");
 }
 function dmgHtml(s){
-  return s.split(" + ").map(p=>p.replace(/^(\d+) \(([^)]+)\)(.*)$/,(m,n,d,r)=>`<span class="dp"><span class="dmg"><small>Average</small>${n}</span><span class="dmg roll"><small>Roll</small>${d}${r}</span></span>`)).join(" ");
+  return s.split(" + ").map(p=>p.replace(/^(\d+) \(([^)]+)\)(.*)$/,(m,n,d,r)=>`<span class="dp"><span class="dmg"><small>Average</small><b>${n}</b></span><span class="dmg roll"><small>Roll</small><b>${d}</b><span class="dt">${r.trim()}</span></span></span>`)).join(" ");
 }
+const SK={"Dimetrodon":"Perception +2","Giant Frog":"Perception +2, Stealth +3","Giant Owl":"Perception +5, Stealth +4","Giant Poisonous Snake":"Perception +2","Giant Wolf Spider":"Perception +3, Stealth +7","Hadrosaurus":"Perception +2","Panther":"Perception +4, Stealth +6","Pteranodon":"Perception +1","Wolf":"Perception +3, Stealth +4","Velociraptor":"Perception +3",
+"Ape":"Athletics +5, Perception +3","Crocodile":"Stealth +2","Reef Shark":"Perception +2",
+"Brown Bear":"Perception +3","Deinonychus":"Perception +3","Dire Wolf":"Perception +3, Stealth +4","Giant Eagle":"Perception +4","Giant Hyena":"Perception +3","Giant Octopus":"Perception +4, Stealth +5","Giant Spider":"Stealth +7","Giant Vulture":"Perception +3","Lion":"Perception +3, Stealth +6","Tiger":"Perception +3, Stealth +6",
+"Allosaurus":"Perception +5","Giant Constrictor Snake":"Perception +2","Giant Elk":"Perception +4","Hunter Shark":"Perception +2","Plesiosaurus":"Perception +3, Stealth +4","Polar Bear / Cave Bear":"Perception +3","Quetzalcoatlus":"Perception +2","Saber-toothed Tiger":"Perception +3, Stealth +6"};
+const sec=(id,title,body)=>`<details class="blk${closed.has(id)?" shut":""}" data-sec="${id}" ${closed.has(id)?"":"open"}><summary><h4>${title}</h4></summary><div class="bd"><div class="bd-in">${body}</div></div></details>`;
 function renderDetail(){
   $("s3").hidden=!cur;if(!cur)return;
   const [n,ac,mx,sz,desc,tr,ac_]=cur;
+  const [sp,sc]=S[n],ab=["STR","DEX","CON","INT","WIS","CHA"].map((l,i)=>{const v=+sc.split(",")[i],m=Math.floor((v-10)/2);return `<div class="stat"><small>${l}</small><b>${v}</b><span class="mod">${m>=0?"+":""}${m}</span></div>`}).join("");
   const traits=tr?tr.split("|").map(t=>{const i=t.indexOf(":");return `<div class="item"><b>${t.slice(0,i)}.</b><p>${t.slice(i+1).trim()}</p></div>`}).join(""):"";
   const acts=ac_.split("|").map(a=>{
     const [nm,hit,reach,dmg,ex]=a.split(";");
@@ -168,13 +273,15 @@ function renderDetail(){
   const cnt=BASE[cr]*mult;
   $("detail").innerHTML=`<div class="card">
    <div class="head"><div><h3>${n}</h3><div class="tag">${sz} beast · fey while summoned · CR ${cr}</div></div>
-   <div class="stats"><div class="stat"><small>AC</small><b>${ac}</b></div><div class="stat"><small>Max HP</small><b>${mx}</b></div></div></div>
+   <div class="stats"><div class="stat"><small>AC</small><b>${ac}</b></div><div class="stat"><small>Max HP</small><b>${mx}</b></div><div class="stat sp"><small>Speed</small><b>${sp}</b></div></div></div>
    ${desc?`<p class="desc">${desc}</p>`:""}
-   ${traits?`<div class="blk"><h4>Traits</h4>${traits}</div>`:""}
-   <div class="blk"><h4>Actions</h4>${acts}</div>
-   <div class="blk"><div class="trk-top"><h4 style="margin:0">Hit point trackers · ${plural(cnt,"beast")}</h4><button class="btn" id="reset">Reset all to ${mx}</button></div>
-   <div class="seg" style="margin-bottom:18px" id="slots">${SLOTS.map(([l,m])=>`<button data-m="${m}" class="${m===mult?"on":""}">${l}-level slot · ×${m}</button>`).join("")}</div>
-   <div class="trk" id="trk"></div></div></div>`;
+   ${sec("attr","Attributes",`<div class="abil">${ab}</div><p class="senses"><b>Senses</b> · ${SN[n]}</p>${SK[n]?`<p class="senses"><b>Skills</b> · ${SK[n]}</p>`:""}`)}
+   ${traits?sec("traits","Traits",traits):""}
+   ${sec("actions","Actions",acts)}
+   ${sec("trk","Hit point trackers · "+plural(cnt,"beast"),`<div class="ctl">
+   <div class="seg" id="slots">${SLOTS.map(([l,m])=>`<button data-m="${m}" class="${m===mult?"on":""}">${l}-level slot · ×${m}</button>`).join("")}</div></div>
+   <div class="topt"><label class="chk"><input type="checkbox" id="tempOn" ${tempOn?"checked":""}>Temp HP</label><span class="tapply" id="tapply" ${tempOn?"":"hidden"}>Set all to <input class="tin" id="tall" type="text" inputmode="numeric" maxlength="4" value="${tallV}" aria-label="Temp HP to set on all beasts"><button class="btn sm" id="tapplyBtn">Apply</button></span><button class="btn rst" id="reset">Reset all to ${mx}</button></div>
+   <div class="trk" id="trk"></div>`)}</div>`;
   renderTrk();
 }
 function arr(){const mx=cur[2],c=BASE[cr]*mult,k=cur[0];const a=hp[k]=hp[k]||[];while(a.length<c)a.push(mx);return a}
@@ -183,14 +290,19 @@ function renderTrk(){
   $("trk").innerHTML=Array.from({length:c},(_,i)=>`<div class="t" id="t${i}"></div>`).join("");
   for(let i=0;i<c;i++)paint(i);
 }
+const lab=n=>n==="Axe Beak"?n:n.trim().split(" ").pop();
+function tarr(){const c=BASE[cr]*mult,a=tmp[cur[0]]=tmp[cur[0]]||[];while(a.length<c)a.push(0);return a}
+function applyAll(){const n=Math.max(0,parseInt($("tall").value,10)||0);tallV=n;$("tall").value=n;tarr().fill(n);renderTrk();}
 function paint(i){
-  const v=arr()[i],mx=cur[2],p=v/mx;
-  const col=p>.5?"var(--ac)":p>.25?"var(--amb)":"var(--red)";
+  const v=arr()[i],mx=cur[2],T=tempOn?tarr()[i]:0,tot=mx+T,f=v/mx;
+  const col=f>.5?"var(--ac)":f>.25?"var(--amb)":"var(--red)";
   const el=$("t"+i);el.className="t"+(v===0?" dead":"");
-  el.innerHTML=`<div class="lb"><span>${cur[0].trim().split(" ").pop()} ${i+1}</span><span>${v===0?"Down":""}</span></div>
+  const right=`<span>${v===0?"Down":""}</span>`;
+  const trow=tempOn?`<div class="trow"><input class="tin" type="text" inputmode="numeric" maxlength="4" data-i="${i}" value="${T}" aria-label="Temp HP of beast ${i+1}"><span class="tl">Temp HP</span><div class="tar"><button data-i="${i}" data-t="1" aria-label="Increase temp HP of beast ${i+1}"><i class="tri u"></i></button><button data-i="${i}" data-t="-1" aria-label="Decrease temp HP of beast ${i+1}"><i class="tri d"></i></button></div></div>`:"";
+  el.innerHTML=`<div class="lb"><span>${lab(cur[0])} ${i+1}</span>${right}</div>
   <div class="row"><div class="num"><input class="hpin" type="text" inputmode="numeric" data-i="${i}" value="${v}" aria-label="Hit points of beast ${i+1}"><small> / ${mx}</small></div>
-  <div class="arr"><button data-i="${i}" data-d="1" aria-label="Increase HP of beast ${i+1}">▲</button><button data-i="${i}" data-d="-1" aria-label="Decrease HP of beast ${i+1}">▼</button></div></div>
-  <div class="bar"><i style="width:${p*100}%;background:${col}"></i></div>`;
+  <div class="arr"><button data-i="${i}" data-d="1" aria-label="Increase HP of beast ${i+1}">▲</button><button data-i="${i}" data-d="-1" aria-label="Decrease HP of beast ${i+1}">▼</button></div></div>${trow}
+  <div class="bar${tempOn?" st":""}"><i style="width:${v/tot*100}%;background:${col}"></i>${tempOn?`<i class="tpb" style="width:${T/tot*100}%"></i>`:""}</div>`;
 }
 document.addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
@@ -198,11 +310,23 @@ document.addEventListener("click",e=>{
   else if(b.closest("#list")){cur=D[cr][+b.dataset.i];renderList();renderDetail();$("s3").scrollIntoView({behavior:"smooth",block:"start"});}
   else if(b.closest("#slots")){mult=+b.dataset.m;renderDetail();}
   else if(b.id==="reset"){hp[cur[0]]=[];renderTrk();}
-  else if(b.dataset.d){const a=arr(),i=+b.dataset.i;a[i]=Math.max(0,Math.min(cur[2],a[i]+ +b.dataset.d));paint(i);}
+  else if(b.id==="tapplyBtn"){applyAll()}
+  else if(b.dataset.d){const a=arr(),i=+b.dataset.i,d=+b.dataset.d,ta=tarr();if(d<0&&tempOn&&ta[i]>0)ta[i]--;else a[i]=Math.max(0,Math.min(cur[2],a[i]+d));paint(i);}
+  else if(b.dataset.t){const ta=tarr(),i=+b.dataset.i;ta[i]=Math.max(0,ta[i]+ +b.dataset.t);paint(i);}
 });
-document.addEventListener("change",e=>{const t=e.target;if(!t.classList.contains("hpin"))return;const a=arr(),i=+t.dataset.i;let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,Math.min(cur[2],n));paint(i);});
-document.addEventListener("focusin",e=>{if(e.target.classList&&e.target.classList.contains("hpin"))e.target.select();});
-document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("hpin"))e.target.blur();});
+document.addEventListener("change",e=>{const t=e.target;
+  if(t.id==="tempOn"){tempOn=t.checked;$("tapply").hidden=!tempOn;renderTrk();return}
+  if(t.id==="tall"){tallV=Math.max(0,parseInt(t.value,10)||0);t.value=tallV;return}
+  const i=+t.dataset.i;
+  if(t.classList.contains("tin")){const a=tarr();let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,n);paint(i);return}
+  if(!t.classList.contains("hpin"))return;const a=arr();let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,Math.min(cur[2],n));paint(i);});
+document.addEventListener("focusin",e=>{if(e.target.classList&&/\b(hpin|tin)\b/.test(e.target.className))e.target.select();});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&/\b(hpin|tin)\b/.test(e.target.className)){e.target.blur();if(e.target.id==="tall")applyAll()}});
+document.addEventListener("keydown",e=>{const t=e.target;if(e.key!=="ArrowUp"&&e.key!=="ArrowDown")return;if(!/\b(hpin|tin)\b/.test(t.className))return;e.preventDefault();const d=e.key==="ArrowUp"?1:-1;
+  if(t.id==="tall"){tallV=Math.max(0,tallV+d);t.value=tallV;return}
+  const i=+t.dataset.i,isT=t.classList.contains("tin");
+  if(isT){const a=tarr();a[i]=Math.max(0,a[i]+d)}else{const a=arr();a[i]=Math.max(0,Math.min(cur[2],a[i]+d))}
+  paint(i);const n=$("t"+i).querySelector(isT?".tin":".hpin");n.focus();n.select();});
 renderCR();
 </script>
 </body>
