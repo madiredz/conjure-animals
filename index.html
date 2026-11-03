@@ -80,17 +80,7 @@ h2 span{color:var(--ac);margin-right:8px}
 .t{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .t.dead{opacity:.55}
 .t .lb{display:flex;justify-content:space-between;color:var(--mu);font-size:.85rem;margin-bottom:0}
-.t .row{display:flex;align-items:center;gap:14px}
-.t .num{font-size:2.4rem;font-weight:700;line-height:1;min-width:2ch}
-.t .num small{font-size:.95rem;color:var(--mu);font-weight:400}
-.num input{font:inherit;color:inherit;background:var(--card2);border:1px solid var(--line);border-radius:8px;width:3.6ch;padding:2px 4px;text-align:center}
-.num input:focus{outline:none;border-color:var(--ac)}
 .nw{white-space:nowrap}
-.arr{display:flex;flex-direction:column;gap:0;margin-left:auto}
-.arr button{width:44px;height:32px;border-radius:0;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font-size:.9rem}
-.arr button:first-child{border-radius:8px 8px 0 0}
-.arr button:last-child{border-radius:0 0 8px 8px;margin-top:-1px}
-.arr button:hover{border-color:var(--ac);color:var(--ac);position:relative;z-index:1}
 .bar{display:flex;height:6px;background:#2d3340;border-radius:4px;margin-top:14px;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:4px;transition:.2s}
 .empty{color:var(--mu);border:1px dashed var(--line);border-radius:12px;padding:22px}
@@ -107,19 +97,60 @@ h2 span{color:var(--ac);margin-right:8px}
 .tapply[hidden]{display:none}
 .tin{font:inherit;font-size:.85rem;color:#e3d9ff;background:var(--card2);border:1px solid #4a3d7a;border-radius:6px;width:4ch;height:24px;padding:0 4px;text-align:center}
 .tin:focus{outline:none;border-color:var(--tp)}
-#tall{font-size:1rem;height:32px;width:5ch}
-.trow{display:flex;align-items:center;gap:10px;margin-top:6px;padding:0 0 0 5px;background:#171428;border:1px solid #3a3160;border-radius:8px;overflow:hidden;align-items:stretch}
-.tl{color:var(--tp);font-size:.85rem;align-self:center}
-.trow .tin{font-size:1.05rem;height:28px;width:3ch;margin:4px 0;align-self:center;background:#171428}
-.tar{display:flex;flex-direction:column;width:42px;margin-left:auto;align-self:stretch}
+#tall{font-size:1rem;height:32px;width:7ch}
 .tri{display:block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent}
 .tri.u{border-bottom:5px solid currentColor}
 .tri.d{border-top:5px solid currentColor}
-.tar button{flex:1;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-left:1px solid #3a3160;border-radius:0;background:#1d1a2e;color:#e3d9ff;font-size:.5rem;line-height:1;cursor:pointer}
-.tar button+button{border-top:1px solid #3a3160}
-.tar button:hover{background:#2a2447;color:var(--tp)}
 .tmp{display:inline-flex;align-items:center;gap:6px;color:var(--tp)}
 .btn.sm{padding:5px 14px;font-size:.9rem;background:#1d1a2e;border-color:#4a3d7a;color:#e3d9ff}
+.sw{width:20px;height:20px;padding:0;border-radius:5px;border:1px solid rgba(255,255,255,.35);background:var(--bc,#fff);cursor:pointer}
+.sw:hover{border-color:#fff}
+.t .lb>span:first-child{color:var(--bc,var(--mu))}
+.t .rt{display:inline-flex;align-items:center;gap:8px}
+#cp{position:absolute;z-index:50;width:232px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+#cp[hidden]{display:none}
+#cpsv{position:relative;height:150px;border-radius:8px;touch-action:none;cursor:crosshair}
+#cphue{position:relative;height:14px;margin:14px 0 12px;border-radius:7px;touch-action:none;cursor:pointer;background:linear-gradient(to right,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
+#cp i{position:absolute;width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.6);transform:translate(-50%,-50%);pointer-events:none}
+#cphue i{top:50%}
+#cphex{width:100%;font:inherit;color:var(--tx);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 10px;text-align:center;letter-spacing:.05em}
+#cphex:focus{outline:none;border-color:var(--ac)}
+
+.t .lb{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.lh{display:flex;align-items:center;gap:12px;min-width:0}
+.nm{color:var(--tx);font-weight:400;font-size:.9rem}
+.dn{color:var(--mu);font-size:.85rem}
+.fl{display:flex;gap:8px;align-items:stretch}
+.fld{position:relative;flex:1;min-width:0;background:#20242e;border:1px solid var(--line);border-radius:8px;padding:7px 10px 8px}
+.fld:focus-within{border-color:var(--ac)}
+.fld.tf{border-color:#3a3160}
+.fld.tf:focus-within{border-color:var(--tp)}
+.fld small{display:block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);line-height:1}
+.fld.tf small{color:var(--tp)}
+.vr{display:flex;align-items:baseline;gap:2px}
+.mx{font-size:.8rem;color:var(--mu);white-space:nowrap}
+.in{position:relative;display:inline-block}
+.t input.hpin,.t input.tin{font:inherit;font-size:1.6rem;font-weight:700;height:2.25rem;padding:0;border:0;border-radius:6px;background:transparent;color:var(--tx);outline:none;text-align:left}
+.t input.hpin{width:2ch}
+.t input.tin{width:100%;color:#e3d9ff}
+@supports(field-sizing:content){.t input.tin{field-sizing:content}}
+.tl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tp)}
+.t input.ain{font:inherit;font-size:1.05rem;font-weight:600;width:52px;height:1.625rem;box-sizing:border-box;padding:0;text-align:center;color:var(--tx);background:#20242e;border:1px solid var(--line);border-radius:6px;outline:none}
+.t input.ain:focus{border-color:var(--ac)}
+.sa{position:absolute;right:2px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .12s}
+.fld .sa{top:auto;bottom:10px;transform:none}
+.in:hover .sa,.in:focus-within .sa,.fld:hover .sa,.fld:focus-within .sa{opacity:1;pointer-events:auto}
+.sa button{width:15px;height:13px;padding:0;border:0;background:#323846;color:#cfd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.sa button:first-child{border-radius:5px 5px 0 0}
+.sa button:last-child{border-radius:0 0 5px 5px;margin-top:1px}
+.sa button:hover{background:#454d60;color:#fff}
+.bar{height:10px;border-radius:999px}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-top:14px;}
+.hbtn{height:1.625rem;box-sizing:border-box;padding:0 2px;border-radius:6px;border:1px solid;font:inherit;font-size:.78rem;font-weight:600;white-space:nowrap;cursor:pointer}
+.hbtn.heal{background:#163a2e;border-color:#2c6b52;color:#b5e8d2}
+.hbtn.hurt{background:#2c1a22;border-color:#5a2a38;color:#f0b4c0}
+.hbtn:hover{filter:brightness(1.2)}
+.hd .in{display:flex}
 </style>
 </head>
 <body>
@@ -130,6 +161,7 @@ h2 span{color:var(--ac);margin-right:8px}
 <section id="s2" hidden><h2><span>2</span>Choose an animal</h2><div class="grid" id="list"></div></section>
 <section id="s3" hidden><h2><span>3</span>Animal details &amp; tracker</h2><div id="detail"></div></section>
 </main>
+<div id="cp" hidden><div id="cpsv"><i id="cpdot"></i></div><div id="cphue"><i id="cph"></i></div><input id="cphex" maxlength="7" spellcheck="false" aria-label="Hex color"></div>
 <script>
 // [name, AC, HP, size, description, traits "Name: text|...", actions "Name;hit;reach;damage;extra|..."]
 const D={
@@ -233,7 +265,30 @@ let cr=null,cur=null,mult=1;const hp={};
 const $=id=>document.getElementById(id);
 const plural=(n,w)=>n+" "+w+(n===1?"":"s");
 
-const closed=new Set();let tempOn=false,tallV=0;const tmp={};
+const closed=new Set();
+const cols={},DEF=["#ff4d4d","#ff9a3c","#ffd93b","#4cd964","#3b82f6","#5b5be0","#a855f7","#ffffff"];
+const hsv2rgb=(h,s,v)=>{const f=n=>{const k=(n+h/60)%6;return v-v*s*Math.max(0,Math.min(k,4-k,1))};return[f(5),f(3),f(1)].map(x=>Math.round(x*255))};
+const rgb2hex=r=>"#"+r.map(x=>x.toString(16).padStart(2,"0")).join("");
+function hex2hsv(x){const r=[1,3,5].map(i=>parseInt(x.slice(i,i+2),16)/255),mx=Math.max(...r),d=mx-Math.min(...r);let h=0;if(d){h=mx===r[0]?((r[1]-r[2])/d)%6:mx===r[1]?(r[2]-r[0])/d+2:(r[0]-r[1])/d+4;h*=60;if(h<0)h+=360}return[h,mx?d/mx:0,mx]}
+const rndCol=()=>rgb2hex(hsv2rgb(Math.random()*360,.55+Math.random()*.35,.85+Math.random()*.15));
+function carr(){const c=BASE[cr]*mult,a=cols[cur[0]]=cols[cur[0]]||[];while(a.length<c)a.push(a.length<8?DEF[a.length]:rndCol());return a}
+let cpI=null,ch=0,cs=0,cv=1;const clamp=x=>Math.max(0,Math.min(1,x));
+function cpSync(skipHex){const hx=rgb2hex(hsv2rgb(ch,cs,cv));
+  $("cpsv").style.background=`linear-gradient(to top,#000,rgba(0,0,0,0)),linear-gradient(to right,#fff,hsl(${ch},100%,50%))`;
+  $("cpdot").style.left=cs*100+"%";$("cpdot").style.top=(1-cv)*100+"%";$("cph").style.left=ch/360*100+"%";
+  if(!skipHex)$("cphex").value=hx;return hx}
+function cpApply(skipHex){const hx=cpSync(skipHex);carr()[cpI]=hx;const t=$("t"+cpI);if(t)t.style.setProperty("--bc",hx)}
+function cpDrag(el,fn){el.addEventListener("pointerdown",e=>{e.preventDefault();el.setPointerCapture(e.pointerId);fn(e);const mv=ev=>fn(ev),up=()=>{el.removeEventListener("pointermove",mv);el.removeEventListener("pointerup",up)};el.addEventListener("pointermove",mv);el.addEventListener("pointerup",up)})}
+cpDrag($("cpsv"),e=>{const r=$("cpsv").getBoundingClientRect();cs=clamp((e.clientX-r.left)/r.width);cv=1-clamp((e.clientY-r.top)/r.height);cpApply()});
+cpDrag($("cphue"),e=>{const r=$("cphue").getBoundingClientRect();ch=clamp((e.clientX-r.left)/r.width)*360;cpApply()});
+$("cphex").addEventListener("input",e=>{let x=e.target.value.trim().toLowerCase();if(x[0]!=="#")x="#"+x;if(/^#[0-9a-f]{3}$/.test(x))x="#"+[...x.slice(1)].map(c=>c+c).join("");if(/^#[0-9a-f]{6}$/.test(x)){[ch,cs,cv]=hex2hsv(x);cpApply(true)}});
+$("cphex").addEventListener("blur",()=>{if(cpI!==null)$("cphex").value=rgb2hex(hsv2rgb(ch,cs,cv))});
+function openCP(i,s){if(cpI===i&&!$("cp").hidden){$("cp").hidden=true;return}
+  cpI=i;[ch,cs,cv]=hex2hsv(carr()[i]);const r=s.getBoundingClientRect(),cp=$("cp");cp.hidden=false;
+  cp.style.left=Math.max(8,Math.min(r.right+scrollX-232,scrollX+innerWidth-240))+"px";cp.style.top=r.bottom+scrollY+8+"px";cpSync()}
+document.addEventListener("click",e=>{const s=e.target.closest(".sw");if(s)openCP(+s.dataset.i,s)});
+document.addEventListener("pointerdown",e=>{if(!e.target.closest("#cp,.sw"))$("cp").hidden=true});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("cp").hidden=true});let tempOn=false,tallV=0;const tmp={};
 function toggleSec(d){
   const bd=d.querySelector(".bd"),from=bd.offsetHeight,opening=d._cl||!d.open;
   if(d._a){d._a.onfinish=null;d._a.cancel()}
@@ -263,7 +318,7 @@ const sec=(id,title,body)=>`<details class="blk${closed.has(id)?" shut":""}" dat
 function renderDetail(){
   $("s3").hidden=!cur;if(!cur)return;
   const [n,ac,mx,sz,desc,tr,ac_]=cur;
-  const [sp,sc]=S[n],ab=["STR","DEX","CON","INT","WIS","CHA"].map((l,i)=>{const v=+sc.split(",")[i],m=Math.floor((v-10)/2);return `<div class="stat"><small>${l}</small><b>${v}</b><span class="mod">${m>=0?"+":""}${m}</span></div>`}).join("");
+  const [sp,sc]=S[n],ab=["STR","DEX","CON","INT","WIS","CHA"].map((l,i)=>{const v=+sc.split(",")[i],m=Math.floor((v-10)/2);return `<div class="stat"><small>${l}</small><b>${m>=0?"+":""}${m}</b><span class="mod">${v}</span></div>`}).join("");
   const traits=tr?tr.split("|").map(t=>{const i=t.indexOf(":");return `<div class="item"><b>${t.slice(0,i)}.</b><p>${t.slice(i+1).trim()}</p></div>`}).join(""):"";
   const acts=ac_.split("|").map(a=>{
     const [nm,hit,reach,dmg,ex]=a.split(";");
@@ -280,12 +335,12 @@ function renderDetail(){
    ${sec("actions","Actions",acts)}
    ${sec("trk","Hit point trackers · "+plural(cnt,"beast"),`<div class="ctl">
    <div class="seg" id="slots">${SLOTS.map(([l,m])=>`<button data-m="${m}" class="${m===mult?"on":""}">${l}-level slot · ×${m}</button>`).join("")}</div></div>
-   <div class="topt"><label class="chk"><input type="checkbox" id="tempOn" ${tempOn?"checked":""}>Temp HP</label><span class="tapply" id="tapply" ${tempOn?"":"hidden"}>Set all to <input class="tin" id="tall" type="text" inputmode="numeric" maxlength="4" value="${tallV}" aria-label="Temp HP to set on all beasts"><button class="btn sm" id="tapplyBtn">Apply</button></span><button class="btn rst" id="reset">Reset all to ${mx}</button></div>
+   <div class="topt"><label class="chk"><input type="checkbox" id="tempOn" ${tempOn?"checked":""}>Temp HP</label><span class="tapply" id="tapply" ${tempOn?"":"hidden"}>Set all to <span class="in"><input class="tin" id="tall" type="text" inputmode="numeric" maxlength="4" value="${tallV}" aria-label="Temp HP to set on all beasts"><span class="sa"><button tabindex="-1" data-f="all" data-d="1" aria-label="Increase"><i class="tri u"></i></button><button tabindex="-1" data-f="all" data-d="-1" aria-label="Decrease"><i class="tri d"></i></button></span></span><button class="btn sm" id="tapplyBtn">Apply</button></span><button class="btn rst" id="reset">Reset all to ${mx}</button></div>
    <div class="trk" id="trk"></div>`)}</div>`;
   renderTrk();
 }
 function arr(){const mx=cur[2],c=BASE[cr]*mult,k=cur[0];const a=hp[k]=hp[k]||[];while(a.length<c)a.push(mx);return a}
-function renderTrk(){
+function renderTrk(){$("cp").hidden=true;
   const a=arr(),mx=cur[2],c=BASE[cr]*mult;
   $("trk").innerHTML=Array.from({length:c},(_,i)=>`<div class="t" id="t${i}"></div>`).join("");
   for(let i=0;i<c;i++)paint(i);
@@ -293,17 +348,28 @@ function renderTrk(){
 const lab=n=>n==="Axe Beak"?n:n.trim().split(" ").pop();
 function tarr(){const c=BASE[cr]*mult,a=tmp[cur[0]]=tmp[cur[0]]||[];while(a.length<c)a.push(0);return a}
 function applyAll(){const n=Math.max(0,parseInt($("tall").value,10)||0);tallV=n;$("tall").value=n;tarr().fill(n);renderTrk();}
+const amts={},num=s=>Math.max(0,parseInt(s,10)||0),FS={h:".hpin",t:".tin",a:".ain"};
+function aarr(){const c=BASE[cr]*mult,a=amts[cur[0]]=amts[cur[0]]||[];while(a.length<c)a.push("");return a}
+function step(i,f,d){
+  if(f==="h"){const a=arr();a[i]=Math.max(0,Math.min(cur[2],a[i]+d))}
+  else if(f==="t"){const a=tarr();a[i]=Math.max(0,a[i]+d)}
+  else{const a=aarr();a[i]=String(num(a[i])+Math.max(d,-num(a[i])))}
+}
+function focusF(i,f){const n=$("t"+i).querySelector(FS[f]);n.focus();n.select()}
 function paint(i){
   const v=arr()[i],mx=cur[2],T=tempOn?tarr()[i]:0,tot=mx+T,f=v/mx;
   const col=f>.5?"var(--ac)":f>.25?"var(--amb)":"var(--red)";
-  const el=$("t"+i);el.className="t"+(v===0?" dead":"");
-  const right=`<span>${v===0?"Down":""}</span>`;
-  const trow=tempOn?`<div class="trow"><input class="tin" type="text" inputmode="numeric" maxlength="4" data-i="${i}" value="${T}" aria-label="Temp HP of beast ${i+1}"><span class="tl">Temp HP</span><div class="tar"><button data-i="${i}" data-t="1" aria-label="Increase temp HP of beast ${i+1}"><i class="tri u"></i></button><button data-i="${i}" data-t="-1" aria-label="Decrease temp HP of beast ${i+1}"><i class="tri d"></i></button></div></div>`:"";
-  el.innerHTML=`<div class="lb"><span>${lab(cur[0])} ${i+1}</span>${right}</div>
-  <div class="row"><div class="num"><input class="hpin" type="text" inputmode="numeric" data-i="${i}" value="${v}" aria-label="Hit points of beast ${i+1}"><small> / ${mx}</small></div>
-  <div class="arr"><button data-i="${i}" data-d="1" aria-label="Increase HP of beast ${i+1}">▲</button><button data-i="${i}" data-d="-1" aria-label="Decrease HP of beast ${i+1}">▼</button></div></div>${trow}
-  <div class="bar${tempOn?" st":""}"><i style="width:${v/tot*100}%;background:${col}"></i>${tempOn?`<i class="tpb" style="width:${T/tot*100}%"></i>`:""}</div>`;
+  const el=$("t"+i);el.className="t"+(v===0?" dead":"");el.style.setProperty("--bc",carr()[i]);
+  const sa=k=>`<span class="sa"><button tabindex="-1" data-i="${i}" data-f="${k}" data-d="1" aria-label="Increase"><i class="tri u"></i></button><button tabindex="-1" data-i="${i}" data-f="${k}" data-d="-1" aria-label="Decrease"><i class="tri d"></i></button></span>`;
+  const dn=`<span class="dn">${v===0?"Down":""}</span>`;
+  const sw=`<button class="sw" data-i="${i}" aria-label="Choose color for beast ${i+1}"></button>`;
+  const tf=tempOn?`<div class="fld tf"><div class="vr"><input class="tin" type="text" inputmode="numeric" maxlength="4" data-i="${i}" value="${T}" aria-label="Temp HP of beast ${i+1}"><span class="tl">Temp</span></div>${sa("t")}</div>`:"";
+  el.innerHTML=`<div class="lb"><span class="lh">${sw}<span class="nm">${lab(cur[0])} ${i+1}</span></span>${dn}</div>
+  <div class="fl"><div class="fld"><div class="vr"><input class="hpin" type="text" inputmode="numeric" data-i="${i}" value="${v}" aria-label="Hit points of beast ${i+1}"><span class="mx">/ ${mx}</span></div>${sa("h")}</div>${tf}</div>
+  <div class="bar${tempOn?" st":""}"><i style="width:${v/tot*100}%;background:${col}"></i>${tempOn?`<i class="tpb" style="width:${T/tot*100}%"></i>`:""}</div>
+  <div class="hd"><button class="hbtn heal" data-act="heal" data-i="${i}">Heal</button><div class="in"><input class="ain" type="text" inputmode="numeric" maxlength="4" placeholder="0" data-i="${i}" value="${aarr()[i]}" aria-label="Heal or damage amount for beast ${i+1}">${sa("a")}</div><button class="hbtn hurt" data-act="dmg" data-i="${i}">Damage</button></div>`;
 }
+document.addEventListener("mousedown",e=>{if(e.target.closest(".sa button"))e.preventDefault()});
 document.addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
   if(b.dataset.cr){cr=b.dataset.cr;cur=null;renderCR();renderList();renderDetail();}
@@ -311,22 +377,28 @@ document.addEventListener("click",e=>{
   else if(b.closest("#slots")){mult=+b.dataset.m;renderDetail();}
   else if(b.id==="reset"){hp[cur[0]]=[];renderTrk();}
   else if(b.id==="tapplyBtn"){applyAll()}
-  else if(b.dataset.d){const a=arr(),i=+b.dataset.i,d=+b.dataset.d,ta=tarr();if(d<0&&tempOn&&ta[i]>0)ta[i]--;else a[i]=Math.max(0,Math.min(cur[2],a[i]+d));paint(i);}
-  else if(b.dataset.t){const ta=tarr(),i=+b.dataset.i;ta[i]=Math.max(0,ta[i]+ +b.dataset.t);paint(i);}
+  else if(b.dataset.f==="all"){tallV=Math.max(0,tallV+ +b.dataset.d);$("tall").value=tallV}
+  else if(b.dataset.f){const i=+b.dataset.i,f=b.dataset.f;syncF(b.closest(".in,.fld").querySelector("input"),i,f);step(i,f,+b.dataset.d);paint(i);focusF(i,f)}
+  else if(b.dataset.act){const i=+b.dataset.i,inp=b.closest(".t").querySelector(".ain");let n=num(inp.value);aarr()[i]=inp.value.replace(/\D/g,"");
+    if(b.dataset.act==="heal"){const a=arr();a[i]=Math.min(cur[2],a[i]+n)}
+    else{if(tempOn){const t=tarr(),x=Math.min(t[i],n);t[i]-=x;n-=x}const a=arr();a[i]=Math.max(0,a[i]-n)}
+    paint(i)}
 });
+function syncF(t,i,f){const n=parseInt(t.value,10);if(isNaN(n))return;if(f==="h")arr()[i]=Math.max(0,Math.min(cur[2],n));else if(f==="t")tarr()[i]=Math.max(0,n);else aarr()[i]=String(Math.max(0,n))}
 document.addEventListener("change",e=>{const t=e.target;
   if(t.id==="tempOn"){tempOn=t.checked;$("tapply").hidden=!tempOn;renderTrk();return}
-  if(t.id==="tall"){tallV=Math.max(0,parseInt(t.value,10)||0);t.value=tallV;return}
+  if(t.id==="tall"){tallV=num(t.value);t.value=tallV;return}
   const i=+t.dataset.i;
-  if(t.classList.contains("tin")){const a=tarr();let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,n);paint(i);return}
-  if(!t.classList.contains("hpin"))return;const a=arr();let n=parseInt(t.value,10);if(isNaN(n))n=a[i];a[i]=Math.max(0,Math.min(cur[2],n));paint(i);});
-document.addEventListener("focusin",e=>{if(e.target.classList&&/\b(hpin|tin)\b/.test(e.target.className))e.target.select();});
-document.addEventListener("keydown",e=>{if(e.key==="Enter"&&/\b(hpin|tin)\b/.test(e.target.className)){e.target.blur();if(e.target.id==="tall")applyAll()}});
-document.addEventListener("keydown",e=>{const t=e.target;if(e.key!=="ArrowUp"&&e.key!=="ArrowDown")return;if(!/\b(hpin|tin)\b/.test(t.className))return;e.preventDefault();const d=e.key==="ArrowUp"?1:-1;
-  if(t.id==="tall"){tallV=Math.max(0,tallV+d);t.value=tallV;return}
-  const i=+t.dataset.i,isT=t.classList.contains("tin");
-  if(isT){const a=tarr();a[i]=Math.max(0,a[i]+d)}else{const a=arr();a[i]=Math.max(0,Math.min(cur[2],a[i]+d))}
-  paint(i);const n=$("t"+i).querySelector(isT?".tin":".hpin");n.focus();n.select();});
+  if(t.classList.contains("ain")){aarr()[i]=t.value.replace(/\D/g,"");return}
+  if(t.classList.contains("tin")){syncF(t,i,"t");paint(i);return}
+  if(t.classList.contains("hpin")){syncF(t,i,"h");paint(i)}});
+document.addEventListener("focusin",e=>{if(e.target.classList&&/\b(hpin|tin|ain)\b/.test(e.target.className))e.target.select();});
+document.addEventListener("keydown",e=>{const t=e.target;if(!/\b(hpin|tin|ain)\b/.test(t.className))return;
+  if(e.key==="Enter"){t.blur();if(t.id==="tall")applyAll();return}
+  if(e.key!=="ArrowUp"&&e.key!=="ArrowDown")return;e.preventDefault();const d=e.key==="ArrowUp"?1:-1;
+  if(t.id==="tall"){tallV=Math.max(0,num(t.value)+d);t.value=tallV;return}
+  const i=+t.dataset.i,f=t.classList.contains("tin")?"t":t.classList.contains("ain")?"a":"h";
+  syncF(t,i,f);step(i,f,d);paint(i);focusF(i,f)});
 renderCR();
 </script>
 </body>
